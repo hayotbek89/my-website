@@ -1,0 +1,5 @@
+Contact: mailto:maxmudjonovhayotbek30@gmail.com
+Expires: 2026-12-31T23:59:59Z
+Preferred-Languages: uz, en
+Canonical: https://hayotbek.uz/.well-known/security.txt
+Policy: https://hayotbek.uz/security-policy.html
