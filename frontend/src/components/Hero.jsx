@@ -48,7 +48,7 @@ function Hero() {
     <section id="home" className="hero">
       <div className="container">
         <div className="hero-text">
-          <h1>Assalomu alaykum, men — Hayotbek</h1>
+          <h1 data-text="Assalomu alaykum, men — Hayotbek">Assalomu alaykum, men — Hayotbek</h1>
           <p className="subtitle" ref={subtitleRef}>Dasturchi</p>
           <p>
             Men mobil ilovalar, veb-loyihalar va sun'iy intellekt tizimlari yaratish bilan
@@ -65,19 +65,13 @@ function Hero() {
           </div>
         </div>
         <div className="hero-image">
-          <div className="profile-img-container">
+          <div className="profile-card">
             <img
-              src="/images/img_nobg.png"
+              src="/images/img.png"
               alt="Hayotbek Maxmudjonov"
-              className="profile-img"
-              onError={(e) => {
-                e.target.style.display = 'none'
-                document.getElementById('profileFallback').style.display = 'flex'
-              }}
+              className="original-profile-img"
             />
-            <div className="profile-placeholder" id="profileFallback" style={{ display: 'none' }}>
-              👨‍💻
-            </div>
+            <div className="card-overlay"></div>
           </div>
         </div>
       </div>

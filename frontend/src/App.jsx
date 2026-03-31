@@ -4,8 +4,10 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Portfolio from './components/Portfolio'
 import Skills from './components/Skills'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollTop from './components/ScrollTop'
+import CyberBackground from './components/CyberBackground'
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -27,11 +29,13 @@ function App() {
 
   return (
     <>
+      <CyberBackground />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Hero />
       <About />
       <Portfolio />
       <Skills />
+      <Contact />
       <Footer />
       <ScrollTop />
     </>
