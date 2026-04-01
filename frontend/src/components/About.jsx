@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CyberCard from './CyberCard';
 
 const About = () => {
   return (
@@ -7,46 +8,53 @@ const About = () => {
       <div className="container">
         <h2 className="section-title">Men haqimda</h2>
         <StyledWrapper>
-          <div className="terminal-container">
-            <div className="terminal_toolbar">
-              <div className="butt">
-                <button className="btn btn-red" />
-                <button className="btn btn-yellow" />
-                <button className="btn btn-green" />
+          <div className="terminals-grid">
+            <div className="terminal-container">
+              <div className="terminal_toolbar">
+                <div className="butt">
+                  <button className="btn btn-red" />
+                  <button className="btn btn-yellow" />
+                  <button className="btn btn-green" />
+                </div>
+                <p className="user">hayotbek@admin: ~</p>
+                <div className="add_tab">+</div>
               </div>
-              <p className="user">hayotbek@admin: ~</p>
-              <div className="add_tab">+</div>
+              <div className="terminal_body">
+                <div className="terminal_prompt">
+                  <span className="terminal_user">hayotbek@admin:</span>
+                  <span className="terminal_location">~</span>
+                  <span className="terminal_bling">$</span>
+                  <span className="terminal_command">cat about_me.txt</span>
+                </div>
+
+                <div className="about-text-content">
+                  <p>
+                    Men o'zimni ijodiy va maqsadga yo'naltirilgan dasturchi deb bilaman.
+                    So'nggi yillarda turli loyihalar — mobil ilovalar, sun'iy intellekt tizimlari
+                    va ta'lim sohasidagi interaktiv platformalarni ishlab chiqdim.
+                  </p>
+                  <p>
+                    Ishimda texnik aniqlik, zamonaviy dizayn va foydalanuvchi qulayligini
+                    birlashtirishga harakat qilaman.
+                  </p>
+                  <p>
+                    Bo'sh vaqtimda yangi texnologiyalarni o'rganaman, loyihalarimni
+                    takomillashtiraman va o'z bilimlarimni boshqalar bilan bo'lishaman.
+                  </p>
+                </div>
+
+                <div className="terminal_prompt">
+                  <span className="terminal_user">hayotbek@admin:</span>
+                  <span className="terminal_location">~</span>
+                  <span className="terminal_bling">$</span>
+                  <span className="terminal_cursor" />
+                </div>
+              </div>
             </div>
-            <div className="terminal_body">
-              <div className="terminal_prompt">
-                <span className="terminal_user">hayotbek@admin:</span>
-                <span className="terminal_location">~</span>
-                <span className="terminal_bling">$</span>
-                <span className="terminal_command">cat about_me.txt</span>
-              </div>
 
-              <div className="about-text-content">
-                <p>
-                  Men o'zimni ijodiy va maqsadga yo'naltirilgan dasturchi deb bilaman.
-                  So'nggi yillarda turli loyihalar — mobil ilovalar, sun'iy intellekt tizimlari
-                  va ta'lim sohasidagi interaktiv platformalarni ishlab chiqdim.
-                </p>
-                <p>
-                  Ishimda texnik aniqlik, zamonaviy dizayn va foydalanuvchi qulayligini
-                  birlashtirishga harakat qilaman.
-                </p>
-                <p>
-                  Bo'sh vaqtimda yangi texnologiyalarni o'rganaman, loyihalarimni
-                  takomillashtiraman va o'z bilimlarimni boshqalar bilan bo'lishaman.
-                </p>
-              </div>
-
-              <div className="terminal_prompt">
-                <span className="terminal_user">hayotbek@admin:</span>
-                <span className="terminal_location">~</span>
-                <span className="terminal_bling">$</span>
-                <span className="terminal_cursor" />
-              </div>
+            {/* O'ng tomondagi yangi Kiber-terminalimiz (Siz tanlagan dizayn) */}
+            <div className="cyber-card-wrapper">
+              <CyberCard />
             </div>
           </div>
         </StyledWrapper>
@@ -60,14 +68,29 @@ const StyledWrapper = styled.div`
   justify-content: center;
   padding: 20px 0;
 
+  .terminals-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    width: 100%;
+    align-items: start;
+  }
+
   .terminal-container {
     width: 100%;
-    max-width: 900px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(0, 255, 65, 0.2);
     background: #1a1a1a;
+  }
+
+  .cyber-card-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    /* O'zini balandligiga moslashishi uchun */
   }
 
   .terminal_toolbar {
@@ -114,6 +137,7 @@ const StyledWrapper = styled.div`
     padding: 30px;
     font-family: 'Share Tech Mono', monospace;
     min-height: 320px;
+    height: calc(100% - 35px);
   }
 
   .terminal_prompt {
@@ -153,6 +177,12 @@ const StyledWrapper = styled.div`
   @keyframes curbl {
     0%, 49% { opacity: 1; }
     50%, 100% { opacity: 0; }
+  }
+
+  @media (max-width: 1024px) {
+    .terminals-grid {
+      grid-template-columns: 1fr; /* Telefon va planshetlarda pastma-past tushadi */
+    }
   }
 
   @media (max-width: 768px) {

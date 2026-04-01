@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import styled from 'styled-components'
 import Button from './Button'
 
 function Hero() {
@@ -64,19 +65,97 @@ function Hero() {
             </Button>
           </div>
         </div>
+
         <div className="hero-image">
-          <div className="profile-card">
-            <img
-              src="/images/img.png"
-              alt="Hayotbek Maxmudjonov"
-              className="original-profile-img"
-            />
-            <div className="card-overlay"></div>
-          </div>
+          <ImageContainer>
+            <div className="img-wrapper">
+              {/* Import qilingan rasmni yoki relative URLni chaqiramiz */}
+              <img src="/images/img.png" onError={(e) => { e.target.onerror = null; e.target.src = '../public/images/img.png'; }} alt="Hayotbek Maxmudjonov" className="profile-photo" />
+              <div className="cyber-overlay"></div>
+            </div>
+          </ImageContainer>
         </div>
       </div>
     </section>
   )
 }
 
-export default Hero
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  
+  .img-wrapper {
+    position: relative;
+    /* Rasm to'liq sig'ishi uchun yumshoq, keng to'rtburchak (rounded square) */
+    width: 480px;
+    height: 480px;
+    padding: 8px;
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.8), rgba(0, 212, 255, 0.4));
+    border-radius: 40px; /* Qirralari silliqlangan keng quti */
+    box-shadow: 0 0 40px rgba(0, 255, 65, 0.3);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+    /* Rasmni asliga qaytarib moslash (qo'llar kesilmaydi va markazda turadi) */
+    object-fit: cover;
+    object-position: center 20%; /* Rasm markazdan sal teparoq joylashishi uchun */
+    border-radius: 32px; /* Ichki rasm ham silliq qirrali */
+    display: block;
+    position: relative;
+    z-index: 2;
+    background: #010a04;
+  }
+
+  .cyber-overlay {
+    position: absolute;
+    inset: 8px; 
+    border-radius: 32px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 255, 65, 0.05), transparent); /* Juda xira qilindi, yuz yashil bo'lmasligi uchun */
+    z-index: 3;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .cyber-overlay::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    animation: scanline 6s linear infinite; /* Animatsiya sekinroq, tabiiyroq o'tadi */
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); box-shadow: 0 20px 50px rgba(0, 255, 65, 0.4); }
+  }
+
+  @keyframes scanline {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  @media (max-width: 992px) {
+    .img-wrapper {
+      width: 380px;
+      height: 380px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .img-wrapper {
+      width: 280px;
+      height: 280px;
+    }
+  }
+`;
+
+export default Hero;
