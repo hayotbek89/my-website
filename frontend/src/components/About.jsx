@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CyberCard from './CyberCard';
 
 const About = () => {
   return (
@@ -7,47 +8,34 @@ const About = () => {
       <div className="container">
         <h2 className="section-title">Men haqimda</h2>
         <StyledWrapper>
-          <div className="terminal-container">
-            <div className="terminal_toolbar">
-              <div className="butt">
-                <button className="btn btn-red" />
-                <button className="btn btn-yellow" />
-                <button className="btn btn-green" />
+          <div className="about-content-wrapper">
+            <div className="modern-card-container">
+              <div className="modern-card-header">
+                <h3>Startap g'oyalardan haqiqiy mahsulotgacha</h3>
+                <span className="badge">Innovation</span>
               </div>
-              <p className="user">hayotbek@admin: ~</p>
-              <div className="add_tab">+</div>
-            </div>
-            <div className="terminal_body">
-              <div className="terminal_prompt">
-                <span className="terminal_user">hayotbek@admin:</span>
-                <span className="terminal_location">~</span>
-                <span className="terminal_bling">$</span>
-                <span className="terminal_command">cat about_me.txt</span>
-              </div>
-
-              <div className="about-text-content">
+              <div className="modern-card-body">
                 <p>
                   Men o'zimni ijodiy va maqsadga yo'naltirilgan dasturchi deb bilaman.
+                  Maqsadim – shunchaki kod yozish emas, balki odamlarga foyda keltiradigan va 
+                  biznes jarayonlarini osonlashtiradigan startap loyihalarni yaratish.
+                </p>
+                <p>
                   So'nggi yillarda turli loyihalar — mobil ilovalar, sun'iy intellekt tizimlari
-                  va ta'lim sohasidagi interaktiv platformalarni ishlab chiqdim.
+                  va ta'lim sohasidagi interaktiv SaaS platformalarni ishlab chiqdim.
                 </p>
                 <p>
-                  Ishimda texnik aniqlik, zamonaviy dizayn va foydalanuvchi qulayligini
-                  birlashtirishga harakat qilaman.
+                  Ishimda texnik aniqlik, zamonaviy dizayn va eng asosiysi – yuqori darajadagi 
+                  foydalanuvchi qulayligini (UX/UI) birlashtirishga harakat qilaman.
                 </p>
-                <p>
-                  Bo'sh vaqtimda yangi texnologiyalarni o'rganaman, loyihalarimni
-                  takomillashtiraman va o'z bilimlarimni boshqalar bilan bo'lishaman.
-                </p>
-              </div>
-
-              <div className="terminal_prompt">
-                <span className="terminal_user">hayotbek@admin:</span>
-                <span className="terminal_location">~</span>
-                <span className="terminal_bling">$</span>
-                <span className="terminal_cursor" />
               </div>
             </div>
+            
+            {/* O'ng tomondagi Animatsiyali Kartochka */}
+            <div className="startup-card-wrapper">
+               <CyberCard />
+            </div>
+            
           </div>
         </StyledWrapper>
       </div>
@@ -60,105 +48,81 @@ const StyledWrapper = styled.div`
   justify-content: center;
   padding: 20px 0;
 
-  .terminal-container {
+  .about-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
     width: 100%;
-    max-width: 900px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    border-radius: 12px;
+    max-width: 1100px;
+  }
+
+  .modern-card-container {
+    flex: 1;
+    max-width: 700px;
+    background: var(--card-bg);
+    box-shadow: var(--glow);
+    border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    background: #1a1a1a;
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    transition: transform 0.3s ease;
   }
 
-  .terminal_toolbar {
+  .modern-card-header {
     display: flex;
-    height: 35px;
-    align-items: center;
-    padding: 0 15px;
-    background: #252525;
     justify-content: space-between;
-    border-bottom: 1px solid #333;
-  }
-
-  .butt {
-    display: flex;
     align-items: center;
-    gap: 8px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
   }
 
-  .btn {
-    height: 12px;
-    width: 12px;
-    border: none;
-    border-radius: 50%;
+  .modern-card-header h3 {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin: 0;
+    font-weight: 600;
   }
 
-  .btn-red { background: #ff5f56; }
-  .btn-yellow { background: #ffbd2e; }
-  .btn-green { background: #27c93f; }
-
-  .user {
-    color: #aaa;
-    font-size: 13px;
-    font-family: 'Share Tech Mono', monospace;
+  .badge {
+    background: rgba(236, 72, 153, 0.1);
+    color: var(--secondary);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
   }
 
-  .add_tab {
-    color: #666;
-    font-size: 18px;
-    cursor: pointer;
-  }
-
-  .terminal_body {
-    background: rgba(10, 10, 10, 0.95);
-    padding: 30px;
-    font-family: 'Share Tech Mono', monospace;
-    min-height: 320px;
-  }
-
-  .terminal_prompt {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 16px;
-  }
-
-  .terminal_user { color: #00ff41; }
-  .terminal_location { color: #00d4ff; margin-left: 5px; }
-  .terminal_bling { color: #fff; margin-left: 5px; }
-  .terminal_command { color: #fff; margin-left: 10px; }
-
-  .about-text-content {
-    color: #a8c4aa;
-    font-size: 16px;
+  .modern-card-body p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
     line-height: 1.8;
-    margin: 20px 0 30px 20px;
-    border-left: 2px solid rgba(0, 255, 65, 0.1);
-    padding-left: 25px;
+    margin-bottom: 1.2rem;
   }
 
-  .about-text-content p {
-    margin-bottom: 15px;
+  .modern-card-body p:last-child {
+    margin-bottom: 0;
   }
 
-  .terminal_cursor {
-    display: block;
-    height: 20px;
-    width: 10px;
-    margin-left: 10px;
-    background: #00ff41;
-    animation: curbl 1s infinite;
+  .startup-card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 320px;
   }
 
-  @keyframes curbl {
-    0%, 49% { opacity: 1; }
-    50%, 100% { opacity: 0; }
+  @media (max-width: 992px) {
+    .about-content-wrapper {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
   }
 
   @media (max-width: 768px) {
-    .terminal_body { padding: 20px; }
-    .about-text-content { font-size: 14px; margin-left: 10px; padding-left: 15px; }
-    .terminal_prompt { font-size: 14px; }
+    .modern-card-container { padding: 1.5rem; }
+    .modern-card-header h3 { font-size: 1.2rem; }
+    .startup-card-wrapper { width: 100%; max-width: 350px; }
   }
 `;
 

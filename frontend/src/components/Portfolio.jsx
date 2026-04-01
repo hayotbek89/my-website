@@ -13,33 +13,21 @@ const projects = [
     rotate: -15
   },
   {
-    title: 'BioEdu 3D',
-    desc: "Biologiyani 3D formatda o'rgatadigan interaktiv dastur.",
-    icon: (
-      <svg viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg">
-        <path d="M210.6 5.9c.3-.1.5-.1.9-.2c.3 0 .5-.1.8-.1c.3 0 .6 0 .8.1c.3 0 .6.1.9.2l192 80c4.4 1.8 7.3 6.1 7.3 10.8s-2.9 9-7.3 10.8l-192 80c-1.8.7-3.9.7-5.7 0l-192-80C2.9 105.7 0 101.4 0 96.7s2.9-9 7.3-10.8l192-80z" />
-      </svg>
-    ),
+    title: 'Veb-Sayt Tarjimon',
+    desc: "Saytlarni avtomatik tarjima qilish vositasi.",
+    link: "https://v0-translate-my-website.vercel.app/",
     rotate: -5
   },
   {
-    title: 'ESLATUVCHI',
-    desc: "Ovozli eslatma beruvchi mobil ilova.",
-    icon: (
-      <svg viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg">
-        <path d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z" />
-      </svg>
-    ),
+    title: 'Studio Web',
+    desc: "Ijodiy loyihalar uchun interaktiv platforma.",
+    link: "https://studio-three-ebon.vercel.app/",
     rotate: 15
   },
   {
-    title: 'EduBu',
-    desc: "Talabalar uchun AI platforma.",
-    icon: (
-      <svg viewBox="0 0 640 512" height="1em" xmlns="http://www.w3.org/2000/svg">
-        <path d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H576V64H224v48c-10.7 0-21 1.4-30.8 4.1L160 64z" />
-      </svg>
-    ),
+    title: 'EduBio React',
+    desc: "Talabalar uchun interaktiv platforma.",
+    link: "https://edubio-reactjs.vercel.app/",
     rotate: 25
   }
 ];
@@ -53,14 +41,30 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              data-text={project.title}
+              data-text={project.link ? "SAYTGA O'TISH ↗" : project.title}
               style={{ '--r': project.rotate }}
               className="glass"
+              onClick={() => project.link && window.open(project.link, '_blank')}
             >
-              <div className="content">
-                <div className="icon">{project.icon}</div>
+              <div className="content" style={{ padding: project.link ? '15px' : '20px' }}>
+                {project.link ? (
+                  <div className="iframe-preview-container">
+                    <div className="iframe-blocker"></div>
+                    <iframe
+                      src={project.link}
+                      title={project.title}
+                      scrolling="no"
+                      className="preview-iframe"
+                    />
+                  </div>
+                ) : (
+                  <div className="icon">{project.icon}</div>
+                )}
                 <h3>{project.title}</h3>
                 <p>{project.desc}</p>
+                {project.link && (
+                    <span className="visit-link">Kengaytirib ko'rish</span>
+                )}
               </div>
             </div>
           ))}
@@ -86,7 +90,7 @@ const StyledWrapper = styled.section`
   .section-title {
     font-size: 2.5rem;
     margin-bottom: 60px;
-    background: linear-gradient(135deg, #00ff41, #00d4ff);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -103,51 +107,95 @@ const StyledWrapper = styled.section`
   .card-stack-container .glass {
     position: relative;
     width: 260px;
-    height: 320px;
-    background: rgba(13, 17, 23, 0.8);
+    height: 350px;
+    background: var(--card-bg);
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(0, 255, 65, 0.2);
-    box-shadow: 0 25px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 25px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.5s;
     border-radius: 20px;
-    margin: 0 -80px; /* Kartochkalarni ustma-ust qilish */
+    margin: 0 -80px; 
     transform: rotate(calc(var(--r) * 1deg));
     z-index: 1;
+    cursor: pointer;
   }
 
   .card-stack-container:hover .glass {
     transform: rotate(0deg);
     margin: 0 15px;
-    border-color: #00ff41;
-    box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+    border-color: var(--primary);
+    box-shadow: var(--glow);
   }
 
   .glass .content {
-    padding: 20px;
+    width: 100%;
     text-align: center;
     transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .glass .icon {
     font-size: 3rem;
-    color: #00ff41;
+    color: var(--primary);
     margin-bottom: 15px;
-    fill: #00ff41;
+    fill: var(--primary);
+  }
+
+  /* Live Iframe uchun konteyner */
+  .iframe-preview-container {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-dark);
+  }
+
+  /* Iframe hover effectni buzmasligi uchun ustiga blocker qoyildi */
+  .iframe-blocker {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+  }
+
+  .preview-iframe {
+    width: 140%;
+    height: 140%;
+    border: none;
+    transform: scale(0.71);
+    transform-origin: 0 0;
+    pointer-events: none; 
   }
 
   .glass h3 {
-    color: #00ff41;
-    margin-bottom: 10px;
+    color: var(--text);
+    margin-bottom: 8px;
     font-size: 1.2rem;
   }
 
   .glass p {
-    color: #a8c4aa;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  .visit-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 600;
+    background: rgba(99, 102, 241, 0.1);
+    padding: 4px 10px;
+    border-radius: 6px;
   }
 
   .glass::before {
@@ -156,11 +204,11 @@ const StyledWrapper = styled.section`
     bottom: 0;
     width: 100%;
     height: 45px;
-    background: rgba(0, 255, 65, 0.1);
+    background: rgba(99, 102, 241, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #00ff41;
+    color: var(--primary);
     font-weight: bold;
     font-size: 0.8rem;
     letter-spacing: 2px;
@@ -176,14 +224,14 @@ const StyledWrapper = styled.section`
 
   .project-note {
     margin-top: 50px;
-    color: #4a6552;
+    color: var(--text-muted);
     font-style: italic;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     .card-stack-container {
       flex-direction: column;
-      gap: 30px;
+      gap: 20px;
     }
     .card-stack-container .glass {
       margin: 0;

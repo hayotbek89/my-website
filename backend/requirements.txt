@@ -1,3 +1,4 @@
 flask
 flask-talisman
+flask-limiter
 gunicorn
