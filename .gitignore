@@ -18,3 +18,7 @@ vite_err.txt
 .DS_Store
 Thumbs.db
 
+backend/security_alerts.log
+backend/flask_*.txt
+frontend/vite_run_*.txt
+.._

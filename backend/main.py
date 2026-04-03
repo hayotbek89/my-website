@@ -111,7 +111,8 @@ csp = {
         '\'unsafe-eval\''    # Qora ekran berayotgan sabablardan biri bo'lishi mumkin
     ],
     'object-src': ['\'none\''], # Flash/Java kabi xavfli eski pluginlarni taqiqlash
-    'frame-ancestors': ['\'none\''] # Clickjacking ni to'liq taqiqlash
+    'frame-ancestors': ['\'none\''], # Clickjacking ni to'liq taqiqlash
+    'frame-src': ['\'self\'', 'https://*'] # Iframe orqali loyihalarni ko'rsatishga ruxsat
 }
 
 # 3. Talisman - Barcha Security Header'larni qo'llash (HSTS, X-Content-Type-Options, Referrer-Policy)

@@ -3,16 +3,6 @@ import styled from 'styled-components';
 
 const projects = [
   {
-    title: 'AXSON AI',
-    desc: "Sun'iy intellekt asosida ishlaydigan yordamchi tizim.",
-    icon: (
-      <svg viewBox="0 0 640 512" height="1em" xmlns="http://www.w3.org/2000/svg">
-        <path d="M320 0c17.7 0 32 14.3 32 32V96H472c22.1 0 40 17.9 40 40V472c0 22.1-17.9 40-40 40H168c-22.1 0-40-17.9-40-40V136c0-22.1 17.9-40 40-40H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm160 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H368z" />
-      </svg>
-    ),
-    rotate: -15
-  },
-  {
     title: 'Veb-Sayt Tarjimon',
     desc: "Saytlarni avtomatik tarjima qilish vositasi.",
     link: "https://v0-translate-my-website.vercel.app/",
